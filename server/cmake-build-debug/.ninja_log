@@ -1,0 +1,7 @@
+# ninja log v5
+38	392	1664769340800000000	CMakeFiles/v4.dir/src/main.c.o	3ff0454c1c926813
+1	37	0	CMakeFiles/doxygen	7f222a38bcf23316
+39	200	1664769340610000000	CMakeFiles/v4.dir/src/error.c.o	1f8789bccaaaa556
+38	202	1664769340610000000	CMakeFiles/v4.dir/src/conversion.c.o	8b776dc507dfecee
+393	432	1664769340840000000	v4	5256edbed469dadc
+39	217	1664769340620000000	CMakeFiles/v4.dir/src/copy.c.o	69dcaf9f602894e2

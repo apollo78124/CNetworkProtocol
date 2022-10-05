@@ -1,0 +1,250 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "v20221004.exe"
+		},
+		{
+			"path" : "v20221004.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"add_compile_options",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 44,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wall"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wextra"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wpedantic"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wshadow"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wstrict-overflow=4"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wswitch-default"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wswitch-enum"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wunused"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wunused-macros"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wdate-time"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Winvalid-pch"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wmissing-declarations"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wmissing-include-dirs"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wmissing-prototypes"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wstrict-prototypes"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wundef"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wnull-dereference"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wstack-protector"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wdouble-promotion"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wvla"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Walloca"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Woverlength-strings"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wdisabled-optimization"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Winline"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wcast-qual"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wfloat-equal"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wformat=2"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wfree-nonheap-object"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wshift-overflow"
+				},
+				{
+					"backtrace" : 2,
+					"fragment" : "-Wwrite-strings"
+				},
+				{
+					"fragment" : "-std=gnu99"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "D:/CProject/CSocketServerClient/clientv20221004/include"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "99"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"id" : "v20221004::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
+			}
+		],
+		"language" : "C"
+	},
+	"name" : "v20221004",
+	"nameOnDisk" : "v20221004.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/main.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
