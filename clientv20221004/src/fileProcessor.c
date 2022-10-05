@@ -8,8 +8,8 @@
 #include <dirent.h>
 
 void makeNewFile(char filePath[]) {
-    FILE *fp;
-    FILE *fptr;
+    FILE *reader1;
+    FILE *wiper1;
     char buff[2555];
     int bufferLength = 2555;
     char buffer[bufferLength];
@@ -17,14 +17,16 @@ void makeNewFile(char filePath[]) {
     size_t len = 0;
     ssize_t read;
 
-    fp = fopen(filePath, "rw+");
+    reader1 = fopen(filePath, "r");
+    wiper1 = fopen("D:/Test1/received.txt", "a+");
 
     //Writing to File
     //fputs("This is testing for fputs...\n", fp);
 
     //Reading from file
-    while(fgets(buffer, bufferLength, fp)) {
+    while(fgets(buffer, bufferLength, reader1)) {
         printf("%s", buffer);
+        fputs(buffer, wiper1);
     }
 
     //Checks if file exists
@@ -37,6 +39,5 @@ void makeNewFile(char filePath[]) {
     }
      */
 
-    fclose(fp);
-    fclose(fptr);
+    fclose(reader1);
 }
