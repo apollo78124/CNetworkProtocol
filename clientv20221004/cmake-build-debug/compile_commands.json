@@ -1,0 +1,7 @@
+[
+{
+  "directory": "D:/CProject/CSocketServerClient/v20221004/cmake-build-debug",
+  "command": "C:\\PROGRA~1\\JETBRA~1\\CLION2~1.3\\bin\\mingw\\bin\\gcc.exe -D_POSIX_C_SOURCE=200809L -D_XOPEN_SOURCE=700 -ID:/CProject/CSocketServerClient/v20221004/include -g -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow=4 -Wswitch-default -Wswitch-enum -Wunused -Wunused-macros -Wdate-time -Winvalid-pch -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wnull-dereference -Wstack-protector -Wdouble-promotion -Wvla -Walloca -Woverlength-strings -Wdisabled-optimization -Winline -Wcast-qual -Wfloat-equal -Wformat=2 -Wfree-nonheap-object -Wshift-overflow -Wwrite-strings -fsanitize=address -fsanitize=leak -fsanitize=undefined -fsanitize-address-use-after-scope -fstack-protector-all -fdelete-null-pointer-checks -fno-omit-frame-pointer -Wcast-align -Wunsuffixed-float-constants -Warith-conversion -Wcast-align=strict -Wunsafe-loop-optimizations -Wvector-operation-performance -Walloc-zero -Wtrampolines -Wtsan -Wformat-overflow=2 -Wformat-signedness -Wjump-misses-init -Wformat-truncation=2 -std=gnu99 -o CMakeFiles\\v20221004.dir\\src\\main.c.obj -c D:\\CProject\\CSocketServerClient\\v20221004\\src\\main.c",
+  "file": "D:\\CProject\\CSocketServerClient\\v20221004\\src\\main.c"
+}
+]
