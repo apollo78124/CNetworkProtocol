@@ -41,4 +41,4 @@ add_compile_options("-Wall"
         "-Wshift-overflow"
         "-Wwrite-strings")
 
-add_executable(v20221004 src/main.c)
+add_executable(v20221004 src/main.c include/fileProcessor.h src/fileProcessor.c)

@@ -1,4 +1,4 @@
-# Install script for directory: D:/CProject/CSocketServerClient/clientv20221004
+# Install script for directory: D:/Misc/CNetworkProtocol/clientv20221004
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/CProject/CSocketServerClient/clientv20221004/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/Misc/CNetworkProtocol/clientv20221004/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

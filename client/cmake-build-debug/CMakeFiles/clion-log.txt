@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2022.2.3/bin/ninja/win/ninja.exe" -G Ninja -S E:\Asn1\client -B E:\Asn1\client\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2022.2.3\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S D:\Misc\CNetworkProtocol\client -B D:\Misc\CNetworkProtocol\client\cmake-build-debug
 -- The C compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info
 -- Detecting C compiler ABI info - done
@@ -14,4 +14,4 @@ Call Stack (most recent call first):
 
 
 -- Configuring incomplete, errors occurred!
-See also "E:/Asn1/client/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "D:/Misc/CNetworkProtocol/client/cmake-build-debug/CMakeFiles/CMakeOutput.log".
