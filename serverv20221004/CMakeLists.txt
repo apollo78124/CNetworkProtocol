@@ -41,4 +41,4 @@ add_compile_options("-Wall"
         "-Wshift-overflow"
         "-Wwrite-strings")
 
-add_executable(serverv20221004 src/main.c)
+add_executable(serverv20221004 src/main.c include/serverContext.h src/serverContext.c)

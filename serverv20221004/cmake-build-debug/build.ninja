@@ -56,6 +56,13 @@ build CMakeFiles/serverv20221004.dir/src/main.c.obj: C_COMPILER__serverv20221004
   OBJECT_DIR = CMakeFiles\serverv20221004.dir
   OBJECT_FILE_DIR = CMakeFiles\serverv20221004.dir\src
 
+build CMakeFiles/serverv20221004.dir/src/serverContext.c.obj: C_COMPILER__serverv20221004_Debug D$:/CProject/CSocketServerClient/serverv20221004/src/serverContext.c || cmake_object_order_depends_target_serverv20221004
+  DEP_FILE = CMakeFiles\serverv20221004.dir\src\serverContext.c.obj.d
+  FLAGS = -g -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow=4 -Wswitch-default -Wswitch-enum -Wunused -Wunused-macros -Wdate-time -Winvalid-pch -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wnull-dereference -Wstack-protector -Wdouble-promotion -Wvla -Walloca -Woverlength-strings -Wdisabled-optimization -Winline -Wcast-qual -Wfloat-equal -Wformat=2 -Wfree-nonheap-object -Wshift-overflow -Wwrite-strings -std=gnu99
+  INCLUDES = -ID:/CProject/CSocketServerClient/serverv20221004/include
+  OBJECT_DIR = CMakeFiles\serverv20221004.dir
+  OBJECT_FILE_DIR = CMakeFiles\serverv20221004.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target serverv20221004
@@ -64,7 +71,7 @@ build CMakeFiles/serverv20221004.dir/src/main.c.obj: C_COMPILER__serverv20221004
 #############################################
 # Link the executable serverv20221004.exe
 
-build serverv20221004.exe: C_EXECUTABLE_LINKER__serverv20221004_Debug CMakeFiles/serverv20221004.dir/src/main.c.obj
+build serverv20221004.exe: C_EXECUTABLE_LINKER__serverv20221004_Debug CMakeFiles/serverv20221004.dir/src/main.c.obj CMakeFiles/serverv20221004.dir/src/serverContext.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\serverv20221004.dir

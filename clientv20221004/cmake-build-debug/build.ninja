@@ -58,6 +58,15 @@ build CMakeFiles/v20221004.dir/src/main.c.obj: C_COMPILER__v20221004_Debug D$:/C
   TARGET_COMPILE_PDB = CMakeFiles\v20221004.dir\
   TARGET_PDB = v20221004.pdb
 
+build CMakeFiles/v20221004.dir/src/fileProcessor.c.obj: C_COMPILER__v20221004_Debug D$:/CProject/CSocketServerClient/clientv20221004/src/fileProcessor.c || cmake_object_order_depends_target_v20221004
+  DEP_FILE = CMakeFiles\v20221004.dir\src\fileProcessor.c.obj.d
+  FLAGS = -g -Wall -Wextra -Wpedantic -Wshadow -Wstrict-overflow=4 -Wswitch-default -Wswitch-enum -Wunused -Wunused-macros -Wdate-time -Winvalid-pch -Wmissing-declarations -Wmissing-include-dirs -Wmissing-prototypes -Wstrict-prototypes -Wundef -Wnull-dereference -Wstack-protector -Wdouble-promotion -Wvla -Walloca -Woverlength-strings -Wdisabled-optimization -Winline -Wcast-qual -Wfloat-equal -Wformat=2 -Wfree-nonheap-object -Wshift-overflow -Wwrite-strings -std=gnu99
+  INCLUDES = -ID:/CProject/CSocketServerClient/clientv20221004/include
+  OBJECT_DIR = CMakeFiles\v20221004.dir
+  OBJECT_FILE_DIR = CMakeFiles\v20221004.dir\src
+  TARGET_COMPILE_PDB = CMakeFiles\v20221004.dir\
+  TARGET_PDB = v20221004.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target v20221004
@@ -66,7 +75,7 @@ build CMakeFiles/v20221004.dir/src/main.c.obj: C_COMPILER__v20221004_Debug D$:/C
 #############################################
 # Link the executable v20221004.exe
 
-build v20221004.exe: C_EXECUTABLE_LINKER__v20221004_Debug CMakeFiles/v20221004.dir/src/main.c.obj
+build v20221004.exe: C_EXECUTABLE_LINKER__v20221004_Debug CMakeFiles/v20221004.dir/src/main.c.obj CMakeFiles/v20221004.dir/src/fileProcessor.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\v20221004.dir

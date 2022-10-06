@@ -18,7 +18,7 @@ void makeNewFile(char filePath[]) {
     ssize_t read;
 
     reader1 = fopen(filePath, "r");
-    wiper1 = fopen("D:/Test1/received.txt", "a+");
+    wiper1 = fopen("D:/ClientStorage1/received.txt", "a+");
 
     //Writing to File
     //fputs("This is testing for fputs...\n", fp);
