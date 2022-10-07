@@ -6,7 +6,7 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.23"
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "v20221004::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-v20221004-Debug-3a0461e958c3ddf32a81.json",
+					"jsonFile" : "target-v20221004-Debug-66b87ee10fd0aea651c3.json",
 					"name" : "v20221004",
 					"projectIndex" : 0
 				}
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "D:/CProject/CSocketServerClient/clientv20221004/cmake-build-debug",
-		"source" : "D:/CProject/CSocketServerClient/clientv20221004"
+		"build" : "/run/media/root/687E-3B7D/CProject/CSocketServerClient/clientv20221004/cmake-build-debug",
+		"source" : "/run/media/root/687E-3B7D/CProject/CSocketServerClient/clientv20221004"
 	},
 	"version" : 
 	{

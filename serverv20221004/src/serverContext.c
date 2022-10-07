@@ -3,16 +3,11 @@
 //
 #include <stdio.h>
 #include "serverContext.h"
-// Return value:
-// 0 : Invalid or faulty request from client
-// 1 : Connection successtul
-char ipIn[] = "192.168.1.79";
 
-int listenForRequest() {
-    printf(ipIn);
-    takeFileFromClient(ipIn);
-}
 
-int takeFileFromClient(char fileName[]) {
-    printf(ipIn);
+int makeFile1(char fileName[]) {
+    FILE *wiper2;
+    wiper2 = fopen("/root/Documents/server/received.txt", "w+");
+    fputs("", wiper2);
+    fclose(wiper2);
 }

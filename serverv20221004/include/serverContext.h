@@ -4,6 +4,5 @@
 
 #ifndef SERVERV20221004_SERVERCONTEXT_H
 #define SERVERV20221004_SERVERCONTEXT_H
-int listenForRequest();
-int takeFileFromClient(char fileName[]);
+int makeFile1(char fileName[]);
 #endif //SERVERV20221004_SERVERCONTEXT_H

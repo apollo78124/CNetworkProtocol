@@ -1,3 +1,3 @@
-D:/CProject/CSocketServerClient/serverv20221004/cmake-build-debug/CMakeFiles/serverv20221004.dir
-D:/CProject/CSocketServerClient/serverv20221004/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/CProject/CSocketServerClient/serverv20221004/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/run/media/root/687E-3B7D/CProject/CSocketServerClient/serverv20221004/cmake-build-debug/CMakeFiles/serverv20221004.dir
+/run/media/root/687E-3B7D/CProject/CSocketServerClient/serverv20221004/cmake-build-debug/CMakeFiles/edit_cache.dir
+/run/media/root/687E-3B7D/CProject/CSocketServerClient/serverv20221004/cmake-build-debug/CMakeFiles/rebuild_cache.dir
