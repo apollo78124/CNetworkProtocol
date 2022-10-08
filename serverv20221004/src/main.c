@@ -4,6 +4,7 @@
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <arpa/inet.h>
 #include "serverContext.h"
 #define PORT 8080
 int main(int argc, char const* argv[])
@@ -20,7 +21,7 @@ int main(int argc, char const* argv[])
     char* fileStoragePath = "/root/Documents/server/";
     char fileName[255];
     char filePath[255];
-    FILE *wiper1;
+    FILE *wiper3;
 
     // Creating socket file descriptor
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
@@ -46,6 +47,7 @@ int main(int argc, char const* argv[])
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
+    printf("ServerV20221004: Listening... \n");
     if (listen(server_fd, 3) < 0) {
         perror("listen");
         exit(EXIT_FAILURE);
@@ -57,45 +59,57 @@ int main(int argc, char const* argv[])
         perror("accept");
         exit(EXIT_FAILURE);
     }
+    printf("ServerV20221004: Connected to Client: %s\n", inet_ntoa(address.sin_addr));
     memset(bufferFromClient, 0, 255);
     valread = read(new_socket, bufferFromClient, 255);
     //if client sent for file send request
     if (strcmp(bufferFromClient, "?FSRFSRFSRFSRFSR") == 0) {
+        printf("ServerV20221004: Client %s requested to upload file \n", inet_ntoa(address.sin_addr));
         //Signal file transfer is available
         send(new_socket, confirmFileTransferSignal, strlen(confirmFileTransferSignal), 0);
+        printf("ServerV20221004: Told client %s file upload is available... \n", inet_ntoa(address.sin_addr));
+
+
         //Wait for file name
+        printf("ServerV20221004: Waiting for client %s file filename... \n", inet_ntoa(address.sin_addr));
         memset(bufferFromClient, 0, 255);
         valread = read(new_socket, bufferFromClient, 2555);
         //Create File
+        printf("ServerV20221004: File name received from client %s \n", inet_ntoa(address.sin_addr));
         strcpy(fileName, bufferFromClient);
         strcpy(filePath, fileStoragePath);
         strcat(filePath, fileName);
         makeFile1(filePath);
+        printf("ServerV20221004: File %s created\n", fileName);
+
         //Tell Client that server is ready for content
         send(new_socket, fileNameConfirmSignal, strlen(fileNameConfirmSignal), 0);
-
+        printf("ServerV20221004: Told client %s to start streaming file content \n", inet_ntoa(address.sin_addr));
         //Get File content
-        memset(bufferFromClient, 0, 255);
-        valread = read(new_socket, bufferFromClient, 2555);
-        wiper1 = fopen(filePath, "a+");
+        wiper3 = fopen(filePath, "a+");
+        printf("ServerV20221004: Writing content...\n");
         //Writing to File
-        if (wiper1 != NULL) {
-            //while(fgets(buffer, bufferLength, reader1)) {
-             //   printf("%s", buffer);
-                fputs(bufferFromClient, wiper1);
-            //}
+        if (wiper3!= NULL) {
+            while(1) {
+                memset(bufferFromClient, 0, 255);
+                valread = read(new_socket, bufferFromClient, 255);
+                if (strcmp(bufferFromClient, "?EOCEOCEOCEOCEOC") == 0) {
+                    printf("ServerV20221004: Client %s signaled END OF FILE\n", inet_ntoa(address.sin_addr));
+                    break;
+                }
+                fputs(bufferFromClient, wiper3);
+            }
         }
 
-        fclose(wiper1);
-        //Stream end signal
-        memset(bufferFromClient, 0, 255);
-        valread = read(new_socket, bufferFromClient, 2555);
-
+        fclose(wiper3);
+        printf("ServerV20221004: Closed file writer for filename %s\n", filePath);
         //Done writing files
         send(new_socket, writeFileDoneSignal, strlen(writeFileDoneSignal), 0);
+        printf("ServerV20221004: Told client we closed file writer %s\n", filePath);
     }
 
     shutdown(server_fd, SHUT_RDWR);
+    printf("ServerV20221004: Shutdown server listener... \n");
     // closing the connected socket
     close(new_socket);
     close(bufferFromClient);
@@ -104,9 +118,10 @@ int main(int argc, char const* argv[])
     close(bufferFromClient);
     close(confirmFileTransferSignal);
     close(fileStoragePath);
-    close(wiper1);
     close(fileNameConfirmSignal);
     close (writeFileDoneSignal);
+
+    printf("ServerV20221004: Closed all variables\n", filePath);
     // closing the listening socket
     return 0;
 }

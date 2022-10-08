@@ -7,7 +7,7 @@
 
 int makeFile1(char fileName[]) {
     FILE *wiper2;
-    wiper2 = fopen("/root/Documents/server/received.txt", "w+");
+    wiper2 = fopen(fileName, "w+");
     fputs("", wiper2);
     fclose(wiper2);
 }

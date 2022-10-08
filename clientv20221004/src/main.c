@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     struct sockaddr_in serv_addr;
     char* fileSendSignal = "?FSRFSRFSRFSRFSR";
     char* streamingEndSignal = "?EOCEOCEOCEOCEOC";
-    char* fileName = "received.txt";
+    char* fileName = "A Tale of Two Cities.txt";
     char bufferFromServer[bufferLength];
     if ((sock = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
         printf("\n Socket creation error \n");
@@ -54,27 +54,50 @@ int main(int argc, char *argv[]) {
     if (strcmp(bufferFromServer, "?FSRCFSRCFSRCFSRCFSRC") == 0) {
         //Send File Name to server
         send(sock, fileName, strlen(fileName), 0);
+        printf("ClientV20221004: File name %s sent\n", fileName);
         //Wait for Server Confirmation
+        printf("ClientV20221004: Waiting for filename confirmation...\n");
         memset(bufferFromServer, 0, 255);
         valread = read(sock, bufferFromServer, 255);
+
         //If server confirms it received file name
         if (strcmp(bufferFromServer, "?FNCFNCFNCFNCFNC") == 0) {
+            printf("ClientV20221004: File name confirmation received\n");
+
             //start streaming file contents to server
-            send(sock, "mock file content", strlen("mock file content"), 0);
+            reader1 = fopen("/root/Documents/client/A Tale of Two Cities.txt", "r");
+            printf("ClientV20221004: Started file reader. Started streaming...\n");
+            int counter = 0;
+            if (reader1 != NULL) {
+                printf("ClientV20221004: Streaming started...\n");
+                while(fgets(buffer1, bufferLength, reader1)) {
+                    if (strlen(buffer1) < 1) {
+                        printf("ClientV20221004: Warning: Sent empty string\n");
+                    }
+                    send(sock, buffer1, bufferLength, 0);
+                    counter++;
+
+                }
+                printf("ClientV20221004: Reached end of file. Streaming ending...\n");
+            }
         }
         //Send stream end signal
         send(sock, streamingEndSignal, strlen(streamingEndSignal), 0);
+        printf("ClientV20221004: Sent Streaming stop signal\n");
 
         //Get confirmation from server that it closed its file writer
         memset(bufferFromServer, 0, 255);
+        printf("ClientV20221004: Waiting for streaming end confirmation...\n");
         valread = read(sock, bufferFromServer, 1024);
+        printf("ClientV20221004: Server confirmed stream end\n");
     }
 
     // closing the connected socket
     close(client_fd);
-
+    printf("ClientV20221004: Socket closed\n");
 
     fclose(reader1);
+    printf("ClientV20221004: File reader closed\n");
     return 0;
 }
 
