@@ -10,5 +10,6 @@
 void readFile(char *file_exps[]);
 int checkForAsterisk(char tempString2[]);
 char** getListOfFilePathFromExpression(char tempString3[]);
-
+void loopThroughStringArray(char tempString3[]);
+char* getFileNameFromFilePath(char tempString4[]);
 #endif //V4_FILEPROCESSING_H

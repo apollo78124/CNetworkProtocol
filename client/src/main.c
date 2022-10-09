@@ -39,13 +39,15 @@ static void cleanup(const struct options *opts);
 
 int main(int argc, char *argv[])
 {
-    struct options opts;
+    //struct options opts;
 
-    options_init(&opts);
-    parse_arguments(argc, argv, &opts);
+    //options_init(&opts);
+    //parse_arguments(argc, argv, &opts);
     //options_process(&opts);
     //copy(opts.fd_in, opts.fd_out, BUF_SIZE);
-    cleanup(&opts);
+    //cleanup(&opts);
+    char* hi = getFileNameFromFilePath("root/Documents/client/foo.txt");
+    printf("%s\n", hi);
 
     return EXIT_SUCCESS;
 }

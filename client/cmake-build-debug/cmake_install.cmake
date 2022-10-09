@@ -1,4 +1,4 @@
-# Install script for directory: /run/media/root/687E-3B7D/Asn1/client
+# Install script for directory: /run/media/root/687E-3B7D/CProject/CSocketServerClient/client
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/run/media/root/687E-3B7D/Asn1/client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/run/media/root/687E-3B7D/CProject/CSocketServerClient/client/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

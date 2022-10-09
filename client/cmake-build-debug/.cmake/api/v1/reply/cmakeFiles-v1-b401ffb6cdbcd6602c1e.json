@@ -390,13 +390,36 @@
 		{
 			"isGenerated" : true,
 			"path" : "cmake-build-debug/CMakeFiles/3.23.2/CMakeCCompiler.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/run/media/root/687E-3B7D/clion-2022.2.3/bin/cmake/linux/share/cmake-3.23/Modules/FindDoxygen.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/run/media/root/687E-3B7D/clion-2022.2.3/bin/cmake/linux/share/cmake-3.23/Modules/FindPackageHandleStandardArgs.cmake"
+		},
+		{
+			"isCMake" : true,
+			"isExternal" : true,
+			"path" : "/run/media/root/687E-3B7D/clion-2022.2.3/bin/cmake/linux/share/cmake-3.23/Modules/FindPackageMessage.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/CMakeDoxygenDefaults.cmake"
+		},
+		{
+			"isGenerated" : true,
+			"path" : "cmake-build-debug/CMakeDoxyfile.in"
 		}
 	],
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/run/media/root/687E-3B7D/CProject/CSocketServerClient/clientv20221004/cmake-build-debug",
-		"source" : "/run/media/root/687E-3B7D/CProject/CSocketServerClient/clientv20221004"
+		"build" : "/run/media/root/687E-3B7D/CProject/CSocketServerClient/client/cmake-build-debug",
+		"source" : "/run/media/root/687E-3B7D/CProject/CSocketServerClient/client"
 	},
 	"version" : 
 	{

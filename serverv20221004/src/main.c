@@ -60,53 +60,64 @@ int main(int argc, char const* argv[])
         exit(EXIT_FAILURE);
     }
     printf("ServerV20221004: Connected to Client: %s\n", inet_ntoa(address.sin_addr));
-    memset(bufferFromClient, 0, 255);
-    valread = read(new_socket, bufferFromClient, 255);
-    //if client sent for file send request
-    if (strcmp(bufferFromClient, "?FSRFSRFSRFSRFSR") == 0) {
-        printf("ServerV20221004: Client %s requested to upload file \n", inet_ntoa(address.sin_addr));
-        //Signal file transfer is available
-        send(new_socket, confirmFileTransferSignal, strlen(confirmFileTransferSignal), 0);
-        printf("ServerV20221004: Told client %s file upload is available... \n", inet_ntoa(address.sin_addr));
-
-
-        //Wait for file name
-        printf("ServerV20221004: Waiting for client %s file filename... \n", inet_ntoa(address.sin_addr));
+    while (1) {
+        //Read request from client.
+        printf("ServerV20221004: Waiting for request from client: %s\n", inet_ntoa(address.sin_addr));
         memset(bufferFromClient, 0, 255);
-        valread = read(new_socket, bufferFromClient, 2555);
-        //Create File
-        printf("ServerV20221004: File name received from client %s \n", inet_ntoa(address.sin_addr));
-        strcpy(fileName, bufferFromClient);
-        strcpy(filePath, fileStoragePath);
-        strcat(filePath, fileName);
-        makeFile1(filePath);
-        printf("ServerV20221004: File %s created\n", fileName);
+        valread = read(new_socket, bufferFromClient, 255);
+        //Request 1. if client sent for file send request
+        if (strcmp(bufferFromClient, "?FSRFSRFSRFSRFSR") == 0) {
+            printf("ServerV20221004: Client %s requested to upload file \n", inet_ntoa(address.sin_addr));
+            //Signal file transfer is available
+            send(new_socket, confirmFileTransferSignal, strlen(confirmFileTransferSignal), 0);
+            printf("ServerV20221004: Told client %s file upload is available... \n", inet_ntoa(address.sin_addr));
 
-        //Tell Client that server is ready for content
-        send(new_socket, fileNameConfirmSignal, strlen(fileNameConfirmSignal), 0);
-        printf("ServerV20221004: Told client %s to start streaming file content \n", inet_ntoa(address.sin_addr));
-        //Get File content
-        wiper3 = fopen(filePath, "a+");
-        printf("ServerV20221004: Writing content...\n");
-        //Writing to File
-        if (wiper3!= NULL) {
-            while(1) {
-                memset(bufferFromClient, 0, 255);
-                valread = read(new_socket, bufferFromClient, 255);
-                if (strcmp(bufferFromClient, "?EOCEOCEOCEOCEOC") == 0) {
-                    printf("ServerV20221004: Client %s signaled END OF FILE\n", inet_ntoa(address.sin_addr));
-                    break;
+
+            //Wait for file name
+            printf("ServerV20221004: Waiting for client %s file filename... \n", inet_ntoa(address.sin_addr));
+            memset(bufferFromClient, 0, 255);
+            valread = read(new_socket, bufferFromClient, 2555);
+            //Create File
+            printf("ServerV20221004: File name received from client %s \n", inet_ntoa(address.sin_addr));
+            strcpy(fileName, bufferFromClient);
+            strcpy(filePath, fileStoragePath);
+            strcat(filePath, fileName);
+            makeFile1(filePath);
+            printf("ServerV20221004: File %s created\n", fileName);
+
+            //Tell Client that server is ready for content
+            send(new_socket, fileNameConfirmSignal, strlen(fileNameConfirmSignal), 0);
+            printf("ServerV20221004: Told client %s to start streaming file content \n", inet_ntoa(address.sin_addr));
+            //Get File content
+            wiper3 = fopen(filePath, "a+");
+            printf("ServerV20221004: Writing content...\n");
+            //Writing to File
+            if (wiper3!= NULL) {
+                while(1) {
+                    memset(bufferFromClient, 0, 255);
+                    valread = read(new_socket, bufferFromClient, 255);
+                    if (strcmp(bufferFromClient, "?EOCEOCEOCEOCEOC") == 0) {
+                        printf("ServerV20221004: Client %s signaled END OF FILE\n", inet_ntoa(address.sin_addr));
+                        break;
+                    }
+                    fputs(bufferFromClient, wiper3);
                 }
-                fputs(bufferFromClient, wiper3);
             }
+
+            fclose(wiper3);
+            printf("ServerV20221004: Closed file writer for filename %s\n", filePath);
+            //Done writing files
+            send(new_socket, writeFileDoneSignal, strlen(writeFileDoneSignal), 0);
+            printf("ServerV20221004: Told client we closed file writer %s\n", filePath);
         }
 
-        fclose(wiper3);
-        printf("ServerV20221004: Closed file writer for filename %s\n", filePath);
-        //Done writing files
-        send(new_socket, writeFileDoneSignal, strlen(writeFileDoneSignal), 0);
-        printf("ServerV20221004: Told client we closed file writer %s\n", filePath);
+        //Request 2. if client send abort connection request
+        if (strcmp(bufferFromClient, "?EXITEXITEXITEXITEXIT") == 0) {
+            printf("ServerV20221004: Received connection abort request from client: %s\n", inet_ntoa(address.sin_addr));
+            break;
+        }
     }
+
 
     shutdown(server_fd, SHUT_RDWR);
     printf("ServerV20221004: Shutdown server listener... \n");

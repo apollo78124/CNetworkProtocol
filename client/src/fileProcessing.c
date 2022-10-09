@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <dirent.h>
+#include <unistd.h>
 
 
 void readFile(char *file_exps[]) {
@@ -48,4 +49,25 @@ char** getListOfFilePathFromExpression(char tempString3[]) {
         closedir(tempDir);
     }
     return NULL;
+}
+
+void loopThroughStringArray(char tempString3[]) {
+    char* fileExpressions[] = {"/root/Documents/client/A Tale of Two Cities.txt", "/root/Documents/client/foo.txt"}, **fff;
+    fff = fileExpressions;
+    while(*fff != "") {
+        printf("%s\n", *fff);
+        *fff++;
+    }
+}
+
+char* getFileNameFromFilePath(char tempString4[]) {
+    char *stringToTest = strdup("why/not/working");
+    char *token = strtok(stringToTest, "/");
+    char *tokenBefore;
+    while (token != NULL) {
+        tokenBefore = token;
+        token=strtok(NULL, "/");
+    }
+    close(stringToTest);
+    return tokenBefore;
 }
