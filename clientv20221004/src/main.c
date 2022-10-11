@@ -1,21 +1,29 @@
 
-#define PORT 8080
+#define PORT 50278
+
+#include <inttypes.h>
 #include "fileProcessor.h"
 
 int bufferLength2 = 255;
 const char* connectionAbortRequest = "?EXITEXITEXITEXITEXIT";
+struct arguments_refined {
+    char *serverAddress;
+    char *portString;
+    int portNumber;
+    int fileExpressionsSize;
+    char *file_expressions[20];
+};
+static void argumentProcessing(int argc, char *argv[], struct arguments_refined *arg_refined);
 int main(int argc, char *argv[]) {
 
     //char buff[2555];
     int sock = 0, valread, client_fd;
     struct sockaddr_in serv_addr;
 
-    char* serverAddressToConnect = "127.0.0.1";
+    char* serverAddressToConnect;
 
     char* filePath = "/";
     char* fileName = "";
-
-    char* fileExpressions[] = {"/root/Documents/client/A Tale of Two Cities.txt", "/root/Documents/client/foo.txt"}, **filePath1;
 
     char bufferFromServer[bufferLength2];
 
@@ -24,9 +32,13 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(PORT);
+    //process arguments
+    struct arguments_refined arg_refined;
+    argumentProcessing(argc, argv, &arg_refined);
 
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(arg_refined.portNumber);
+    serverAddressToConnect = arg_refined.serverAddress;
     // Convert IPv4 and IPv6 addresses from text to binary
     // form
     if (inet_pton(AF_INET, serverAddressToConnect, &serv_addr.sin_addr)
@@ -45,15 +57,11 @@ int main(int argc, char *argv[]) {
     }
     printf("Connected to server %s", serverAddressToConnect);
 
-    filePath1 = fileExpressions;
-    //Loop through file expressions and send each of them.
-    while(*filePath1 != "") {
-        strcpy(filePath, *filePath1);
-        strcpy(fileName, getFileNameFromFilePath(filePath));
-
-        //sendOneFile(sock, filePath, fileName, bufferFromServer);
-
-        *filePath1++;
+    for (size_t i = 0; i < arg_refined.fileExpressionsSize; i++)
+    {
+        filePath = arg_refined.file_expressions[i];
+        fileName = getFileNameFromFilePath(arg_refined.file_expressions[i]);
+        sendOneFile(sock, filePath, fileName, bufferFromServer);
     }
 
 
@@ -65,5 +73,58 @@ int main(int argc, char *argv[]) {
     printf("ClientV20221004: Socket closed\n");
     return 0;
 }
+
+int stringToInt(char tempString4[]) {
+
+    int number = strtoumax(tempString4, NULL, 10);
+
+    return number;
+}
+
+
+static void argumentProcessing(int argc, char *argv[], struct arguments_refined *arg_refined) {
+    int c;
+
+    while((c = getopt(argc, argv, ":p:s:")) != -1)   // NOLINT(concurrency-mt-unsafe)
+    {
+        switch(c)
+        {
+            case 's':
+            {
+                arg_refined->serverAddress = optarg;
+                break;
+            }
+            case 'p':
+            {
+                arg_refined->portString = optarg;
+                arg_refined->portNumber = stringToInt(arg_refined->portString);
+                break;
+            }
+            case 'P':
+            {
+                arg_refined->portString = optarg;
+                arg_refined->portNumber = stringToInt(arg_refined->portString);
+                break;
+            }
+        }
+
+    }
+
+    if(optind < argc)
+    {
+        arg_refined->fileExpressionsSize = 0;
+        if ((argc - 1 - optind) > 19) {
+
+        }
+        int tempFEIndex = 0;
+        for(char **tempv = argv+ optind; *tempv != argv[argc]; tempv++) {
+            arg_refined->file_expressions[tempFEIndex] = *tempv;
+            tempFEIndex++;
+            arg_refined->fileExpressionsSize++;
+        }
+    }
+}
+
+
 
 

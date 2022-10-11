@@ -10,4 +10,5 @@ int makeFile1(char fileName[]) {
     wiper2 = fopen(fileName, "w+");
     fputs("", wiper2);
     fclose(wiper2);
+	return 1;
 }

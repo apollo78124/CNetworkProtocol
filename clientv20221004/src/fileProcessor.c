@@ -2,12 +2,12 @@
 // Created by davlee on 10/5/2022.
 //
 #include "fileProcessor.h"
-
-const char* fileSendSignal = "?FSRFSRFSRFSRFSR";
-const char* streamingEndSignal = "?EOCEOCEOCEOCEOC";
 const int bufferLength = 255;
 
 void sendOneFile(int socket1, char filePath[], char fileName[], char bufferFromServer[]) {
+    char fileSendSignal[255] = "?FSRFSRFSRFSRFSR";
+    char streamingEndSignal[255] = "?EOCEOCEOCEOCEOC";
+    char bufferNumber[255];
     int valueRead;
     FILE *reader1;
     //Buffer used for sending
@@ -36,24 +36,36 @@ void sendOneFile(int socket1, char filePath[], char fileName[], char bufferFromS
             printf("ClientV20221004: File name confirmation received\n");
 
             //start streaming file contents to server
-            reader1 = fopen(filePath, "r");
-            printf("ClientV20221004: Started file reader. Started streaming...\n");
-            int counter = 0;
+            reader1 = fopen(filePath, "r+");
+            int numberOfBuffers = 0;
+
+            while(fgets(buffer1, bufferLength + 1, reader1)) {
+                numberOfBuffers++;
+            }
+            sprintf(bufferNumber, "%d", numberOfBuffers);
+            //Send number of buffers to server
+            send(socket1, bufferNumber, strlen(bufferNumber), 0);
+            printf("ClientV20221004: Number of buffers %s sent\n", bufferNumber);
+
+            //Wait for Server Confirmation
+            printf("ClientV20221004: Waiting for number of buffers confirmation...\n");
+            memset(bufferFromServer, 0, bufferLength);
+            valueRead = read(socket1, bufferFromServer, 255);
+            reader1 = fopen(filePath, "r+");
             if (reader1 != NULL) {
                 printf("ClientV20221004: Streaming started...\n");
-                while(fgets(buffer1, bufferLength, reader1)) {
+                while(fgets(buffer1, bufferLength +1 , reader1)) {
                     if (strlen(buffer1) < 1) {
                         printf("ClientV20221004: Warning: Sent empty string\n");
                     }
                     send(socket1, buffer1, bufferLength, 0);
-                    counter++;
                     memset(buffer1, 0, bufferLength);
                 }
                 printf("ClientV20221004: Reached end of file. Streaming ending...\n");
             }
         }
         //Send stream end signal
-        send(socket1, streamingEndSignal, strlen(streamingEndSignal), 0);
+        send(socket1, streamingEndSignal, bufferLength, 0);
         printf("ClientV20221004: Sent Streaming stop signal\n");
 
         //Get confirmation from server that it closed its file writer
@@ -64,6 +76,9 @@ void sendOneFile(int socket1, char filePath[], char fileName[], char bufferFromS
 
         fclose(reader1);
         close(buffer1);
+        close(bufferNumber);
+        close(fileSendSignal);
+        close(streamingEndSignal);
     }
 }
 

@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/v20221004.dir/src/main.c.o CMakeFiles/v20221004.dir/src/fileProcessor.c.o -o v20221004 

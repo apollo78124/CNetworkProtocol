@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/serverv20221004.dir/src/main.c.o CMakeFiles/serverv20221004.dir/src/serverContext.c.o -o serverv20221004 
